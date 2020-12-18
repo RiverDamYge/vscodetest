@@ -1,0 +1,41 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-14 09:01:45
+ * @LastEditTime: 2020-05-14 09:36:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webcourse\lesson10-2\index2.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+  <script>
+    //jquery ajax
+    function submit() {
+      $.ajax({
+        type: "POST",
+        url: "https://45bb14e8-4798-4dcc-92cb-ed5328c1becd.mock.pstmn.io/test",
+        data: "name=John&location=Boston",
+        dataType: 'json',
+        success: function (msg) {
+          alert(msg.result);
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+    }
+
+  </script>
+</head>
+
+<body>
+  <button onclick="submit()">发送</button>
+</body>
+
+</html>

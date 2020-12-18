@@ -1,0 +1,105 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-11 11:39:11
+ * @LastEditTime: 2020-05-18 11:02:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webcourse\lesson10-2\index.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //原生ajax（老版，新版fetch）
+    //非原生(jquery ajax,axios)
+    //mock server (postman)
+    function submit() {
+      let name = document.querySelector("input").value
+
+      //1.创建xmlhttprequest对象
+      let req = new XMLHttpRequest()
+      //2.打开连接
+      req.open('GET', `https://45bb14e8-4798-4dcc-92cb-
+      ed5328c1becd.mock.pstmn.io/test?name=${name}`)
+      // req.setRequestHeader()//post
+      //3.获取响应内容
+      req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+          if (req.status == 200) {
+            // console.log(req.responseText);
+
+            let obj = JSON.parse(req.responseText)
+            // console.log('name:', obj.name);
+            // console.log('age:', obj.age);
+            document.querySelector('#result').innerHTML = `<p>姓名:${obj.name}</p>
+            <p>年龄:${obj.age}</p>`
+
+          }
+        }
+      }
+      //4.发送请求
+      req.send()
+
+      //作业评讲
+      //0.jquery ajax
+      //1.什么是promise(承诺)
+      // 1.1promsie是一种异步
+      // 1.2promise是为了解决异步回调地狱的问题  小黄书（你不知道的javascript）
+      //2.promise和ajax结合
+      //3.fetch
+      //4.axios
+
+
+
+
+    }
+    // let a = { name: 'zs', age: 21, hobby: ['football', 'basketball'] }
+    // //json对象 json字符串
+    // let b = '{"name":"zs","age":"21"}'
+    // //互相转换
+    // let b1 = JSON.parse(b)
+    // let a1 = JSON.stringify(a)
+
+    // console.log(b1, typeof b1);
+    // console.log(a1, typeof a1);
+
+    //promise  3种状态 pending  fullfilled rejected
+    // let b = new Promise(function (resolve, reject) {
+    // resolve(123) //fullfilled履行
+    // reject(321) //rejected拒绝
+    // })
+    // b.then(function (val) {
+    //   console.log(val);
+
+    // }, function (val2) {
+    //   console.log(val2);
+    // })
+    //promise链
+    // b.then(function (val) {
+    //   // console.log(val);
+    //   return val + '222'
+    // }).then(function (val3) {
+    //   console.log(val3);
+    // }).catch(function (error) {
+    //   console.log(error);
+    // })
+
+
+
+
+
+
+  </script>
+</head>
+
+<body>
+  <input type="text">
+  <button onclick="submit()">提交</button>
+  <div id="result"></div>
+</body>
+
+</html>

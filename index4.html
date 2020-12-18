@@ -1,0 +1,36 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-18 11:38:08
+ * @LastEditTime: 2020-05-18 12:01:12
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webcourse\lesson10-2\index4.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    fetch(`
+https://23b9d450-5be4-4bd4-ae8f-7438d4140669.mock.pstmn.io/123`, {
+      method: 'post',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      // body: JSON.stringify({ name: 'zs', age: 21 })
+      body: 'name=zs&&age=21'
+    }).then(function (result) {
+      // console.log(result.json());
+      result.json().then((val) => {
+        console.log(val);
+      })
+    }).catch(function (error) {
+      console.log(error);
+    })
+  </script>
+</head>
+<body>
+</body>
+</html>

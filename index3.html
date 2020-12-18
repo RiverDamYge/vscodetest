@@ -1,0 +1,98 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-18 11:02:30
+ * @LastEditTime: 2020-05-18 11:19:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webcourse\lesson10-2\index4.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+  <script>
+
+    let b = new Promise(function (resolve, reject) {
+      $.ajax({
+        type: "POST",//发送请求的类型post，get
+        dataType: "json",//默认是text
+        url: `
+https://45bb14e8-4798-4dcc-92cb-ed5328c1becd.mock.pstmn.io/test`,//发送的地址
+        data: "name=John&location=Boston",//传递的参数
+        success: function (msg) {//成功的回调
+          // alert("Data Saved: " + msg);
+          // let data = JSON.parse(msg)
+          // console.log(msg.result, msg.code);
+          resolve(msg)
+        },
+        error: function (error) {
+          // console.log(error.responseText);
+          reject(error)
+        }
+      });
+    });
+    b.then(function (result) {
+      console.log('result1', result);
+      let b1 = new Promise(function (resolve, reject) {
+        $.ajax({
+          type: "POST",//发送请求的类型post，get
+          dataType: "json",//默认是text
+          url: `
+      https://45bb14e8-4798-4dcc-92cb-ed5328c1becd.mock.pstmn.io/test`,//发送的地址
+          data: "name=John&location=Boston",//传递的参数
+          success: function (msg) {//成功的回调
+            // alert("Data Saved: " + msg);
+            // let data = JSON.parse(msg)
+            // console.log(msg.result, msg.code);
+            resolve(msg)
+          },
+          error: function (error) {
+            // console.log(error.responseText);
+            reject(error)
+          }
+        });
+      })
+      return b1
+
+
+    })
+      .then(function (result) {
+        console.log('result2', result);
+        let b2 = new Promise(function (resolve, reject) {
+          $.ajax({
+            type: "POST",//发送请求的类型post，get
+            dataType: "json",//默认是text
+            url: `
+        https://45bb14e8-4798-4dcc-92cb-ed5328c1becd.mock.pstmn.io/test`,//发送的地址
+            data: "name=John&location=Boston",//传递的参数
+            success: function (msg) {//成功的回调
+              // alert("Data Saved: " + msg);
+              // let data = JSON.parse(msg)
+              // console.log(msg.result, msg.code);
+              resolve(msg.result)
+            },
+            error: function (error) {
+              // console.log(error.responseText);
+              reject(error)
+            }
+          });
+        })
+        return b2
+
+      }).then(function (result) {
+        console.log('result3', result);
+      })
+
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

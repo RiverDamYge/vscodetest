@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title> </title>
+</head>
+<body>
+    <h1>简易计算器</h1>
+    第一个数：
+    <input type="text" id="num1" width="50px" />
+    <br />
+    第二个数：
+    <input type="text" id="num2" width="50px"/>
+    <br />
+    <input type="button" value="+" onclick="add()" style="color: #FF0000;"/>
+    <input type="button" value="-" onclick="subtract()" style="color: #FF0000;"/>
+    <input type="button" value="*" onclick="multiply()" style="color: #FF0000;"/>
+    <input type="button" value="/" onclick="divide()" style="color: #FF0000;"/>
+    <br />
+    结果：
+    <input id="result"></input>
+</body>
+<script>
+     function add(){
+            var num1=document.getElementById("num1").value;
+            var num2=document.getElementById("num2").value;
+            num1=parseFloat(num1);
+            num2=parseFloat(num2);
+            document.getElementById("result").value=parseInt(num1)+parseInt(num2);
+        }
+        function subtract(){
+            var num1=document.getElementById("num1").value;
+            var num2=document.getElementById("num2").value;
+            num1=parseFloat(num1);
+            num2=parseFloat(num2);
+            document.getElementById("result").value=parseInt(num1)-parseInt(num2);
+        }
+        function multiply(){
+            var num1=document.getElementById("num1").value;
+            var num2=document.getElementById("num2").value;
+            num1=parseFloat(num1);
+            num2=parseFloat(num2);
+            document.getElementById("result").value=parseInt(num1)*parseInt(num2);
+        }
+        function divide(){
+            var num1=document.getElementById("num1").value;
+            var num2=document.getElementById("num2").value;
+            num1=parseFloat(num1);
+            num2=parseFloat(num2);
+            document.getElementById("result").value=parseInt(num1)/parseInt(num2);
+        }
+</script>
+</html>

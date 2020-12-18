@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=oTvbB5fWZIAVqHhAB5ITjLdl1AefwGsI";></script>
+</head>
+<body>
+    <div id="geoinfo" style="width: 697px;height: 550px;border: #ccc solid 1px;"></div>
+</body>
+<script>
+    let map
+    let geoinfo=document.getElementById("geoinfo")
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(myGPSFun)
+        alert("浏览器支持");
+    }
+    else{
+        alert("浏览器不支持");
+    }
+    function myGPSFun(position){
+        let jd=position.coords.longitude;
+        let wd=position.coords.latitude;
+       
+         map=new BMap.Map("geoinfo");
+        let point=new BMap.Point(jd,wd);
+        let convertor=new BMap.Convertor();
+        let pointArr=[];
+        pointArr.push(point);
+        convertor.translate(pointArr,1,5,translateCalback);
+
+       
+    }
+    translateCalback=function(data){
+        if(data.status==0){
+            let marker=new BMap.Marker(data.points[0]);
+        map.centerAndZoom(point,15);
+        map.addOverlay(marker);
+        map.enableScrollWheelZoom(true);
+        }
+    }
+</script>
+</html>
